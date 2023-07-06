@@ -1,0 +1,105 @@
+{
+  "name": "template-react",
+  "version": "1.0.0",
+  "private": true,
+  "description": "React+TypeScript and Express Template",
+  "keywords": [
+    "react",
+    "express",
+    "typescript"
+  ],
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/eidoriantan/template-react/issues",
+    "email": "admin@eidoriantan.me"
+  },
+  "author": {
+    "name": "Adriane Justine Tan",
+    "email": "admin@eidoriantan.me",
+    "url": "https://eidoriantan.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eidoriantan/template-react.git"
+  },
+  "main": "server/index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack",
+    "server": "node server/index.js",
+    "dev": "nodemon server/index.js -w server/",
+    "test": "echo 'No tests'",
+    "lint": "eslint src/**/*.ts src/**/*.tsx && standard server/**/*.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.13",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.22.7",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@svgr/webpack": "^6.3.1",
+    "@types/node": "^20.3.3",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.5",
+    "babel-preset-react-app": "^10.0.1",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
+    "dotenv": "^16.0.1",
+    "eslint-plugin-react-app": "^6.2.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "nodemon": "^2.0.22",
+    "react": "^18.2.0",
+    "react-dev-utils": "^12.0.1",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.1",
+    "sass": "^1.54.5",
+    "sass-loader": "^13.0.2",
+    "source-map-loader": "^4.0.0",
+    "standard": "^17.0.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.5",
+    "typescript": "^5.1.6",
+    "webpack": "^5.76.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.10.0"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:react-app/recommended"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-transform-private-methods",
+        {
+          "loose": true
+        }
+      ],
+      [
+        "@babel/plugin-transform-private-property-in-object",
+        {
+          "loose": true
+        }
+      ],
+      [
+        "@babel/plugin-transform-class-properties",
+        {
+          "loose": true
+        }
+      ]
+    ]
+  }
+}
