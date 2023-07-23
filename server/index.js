@@ -12,8 +12,12 @@ if (fs.existsSync(defEnvPath)) dotenv.config({ path: defEnvPath })
 if (fs.existsSync(localEnvPath)) dotenv.config({ path: localEnvPath, override: true })
 
 const app = express()
+const port = process.env.SERVER_PORT || process.env.PORT || '3001'
+const appBuild = path.resolve(__dirname, '../build')
 
 app.use(cors())
+app.use(express.static(appBuild))
+app.use(express.json())
 
 app.get('/', asyncWrap(async function (req, res) {
   res.send('Hello')
@@ -32,6 +36,6 @@ app.use('*', (req, res) => {
   res.sendFile(indexPath)
 })
 
-app.listen(process.env.SERVER_PORT || process.env.PORT || '3001', () => {
+app.listen(port, () => {
   console.log('Server is running')
 })
