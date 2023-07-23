@@ -27,6 +27,11 @@ app.use((err, req, res, next) => {
   })
 })
 
+app.use('*', (req, res) => {
+  const indexPath = path.resolve(__dirname, '../build/index.html')
+  res.sendFile(indexPath)
+})
+
 app.listen(process.env.SERVER_PORT || process.env.PORT || '3001', () => {
   console.log('Server is running')
 })
