@@ -8,13 +8,14 @@ const TerserPlugin = require('terser-webpack-plugin')
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const dotenv = require('dotenv')
 
-if (typeof process.env.NODE_ENV === 'undefined') process.env.NODE_ENV = 'development'
-const isProd = process.env.NODE_ENV === 'production'
 const defEnvPath = path.resolve(__dirname, '.env')
 const localEnvPath = path.resolve(__dirname, '.env.local')
 
 if (fs.existsSync(defEnvPath)) dotenv.config({ path: defEnvPath })
 if (fs.existsSync(localEnvPath)) dotenv.config({ path: localEnvPath, override: true })
+
+if (typeof process.env.NODE_ENV === 'undefined') process.env.NODE_ENV = 'development'
+const isProd = process.env.NODE_ENV === 'production'
 
 const appPublic = path.resolve(__dirname, 'public')
 const appBuild = path.resolve(__dirname, 'build')
