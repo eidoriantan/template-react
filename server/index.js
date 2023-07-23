@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
+const cors = require('cors')
 const dotenv = require('dotenv')
 
 const defEnvPath = path.resolve(__dirname, '../.env')
@@ -10,6 +11,8 @@ if (fs.existsSync(defEnvPath)) dotenv.config({ path: defEnvPath })
 if (fs.existsSync(localEnvPath)) dotenv.config({ path: localEnvPath, override: true })
 
 const app = express()
+
+app.use(cors())
 
 app.get('/', function (req, res) {
   res.send('Hello')
