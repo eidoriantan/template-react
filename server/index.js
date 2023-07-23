@@ -15,7 +15,7 @@ const app = express()
 
 app.use(cors())
 
-app.get('/', asyncWrap(function (req, res) {
+app.get('/', asyncWrap(async function (req, res) {
   res.send('Hello')
 }))
 
