@@ -3,6 +3,7 @@ const path = require('path')
 const express = require('express')
 const cors = require('cors')
 const dotenv = require('dotenv')
+const asyncWrap = require('./utils/async-wrap')
 
 const defEnvPath = path.resolve(__dirname, '../.env')
 const localEnvPath = path.resolve(__dirname, '../.env.local')
@@ -14,8 +15,16 @@ const app = express()
 
 app.use(cors())
 
-app.get('/', function (req, res) {
+app.get('/', asyncWrap(function (req, res) {
   res.send('Hello')
+}))
+
+app.use((err, req, res, next) => {
+  console.error(err)
+  res.json({
+    success: false,
+    message: err.message
+  })
 })
 
 app.listen(process.env.SERVER_PORT || process.env.PORT || '3001', () => {
