@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -50,6 +51,13 @@ rewrites.push({
   to: '/'
 })
 
+const envs = {}
+for (const key in process.env) {
+  if (key.startsWith('REACT_APP_')) {
+    envs[`process.env.${key}`] = JSON.stringify(process.env[key])
+  }
+}
+
 module.exports = {
   target: ['web', 'es5'],
   stats: 'errors-warnings',
@@ -75,6 +83,7 @@ module.exports = {
         filename: path.basename(page.html)
       })
     }),
+    new webpack.DefinePlugin(envs),
     new InterpolateHtmlPlugin(HtmlWebpackPlugin, process.env),
     isProd && new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
